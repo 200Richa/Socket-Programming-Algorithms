@@ -1,6 +1,8 @@
 from secrets import choice
 import time, socket, sys
 
+steps = []
+
 def selectionSort(A):
     print(A)
     for i in range(len(A)):
@@ -10,6 +12,14 @@ def selectionSort(A):
                 min_idx = j
         A[i], A[min_idx] = A[min_idx], A[i]
         print(A)
+        s = listToString(A)
+        steps.append(s)
+        
+def listToString(s): 
+    str1 = "" 
+    for ele in s: 
+        str1 += str(ele) + " "
+    return str1
  
 new_socket = socket.socket()
 host_name = socket.gethostname()
@@ -37,9 +47,14 @@ choice = int(conn.recv(1024).decode())
 A = conn.recv(1024).decode()
 print(A)
 list=[]
-#for i in range(len(A)):
-    #if(i%2!=0):
-        #list.append(int(A[i]))
+for i in A.split():
+    list.append(int(i))
 
 if(choice==1):   #Selection Sort
     selectionSort(list)
+
+for i in steps:
+    conn.send(i.encode())
+    status = conn.recv(1024).decode()
+    print(status)
+

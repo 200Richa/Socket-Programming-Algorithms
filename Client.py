@@ -13,18 +13,24 @@ socket_server.connect((server_host, sport))
 #Display available algorithms from server
 algo = socket_server.recv(1024)
 algo = algo.decode()
-print("Choose an algorithm: \n",algo)
+print("Choose an algorithm:\n",algo)
 
 #Send chosen option to server
 choice = input("Enter option number: ")
 socket_server.send(choice.encode())
 
 #Input list
-size = int(input("size "))
+size = int(input("Enter size: "))
 list=input()
 socket_server.send(list.encode())
 
+count=0
+
 #Loop to display steps
-#while True:
-    #step = (socket_server.recv(1024)).decode()
-    #print(step)
+while True:
+    step = (socket_server.recv(1024)).decode()
+    print(step)
+    if(step==""):
+        exit(0)
+    socket_server.send("ok".encode())
+    
