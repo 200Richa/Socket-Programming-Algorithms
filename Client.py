@@ -1,4 +1,4 @@
-import time, socket, sys
+import socket
  
 socket_server = socket.socket()
 server_host = socket.gethostname()
@@ -7,18 +7,26 @@ sport = 8080
  
 print('This is your IP address: ',ip)
 server_host = input('Enter server IP address:')
-name = input('Enter name: ')
- 
  
 socket_server.connect((server_host, sport))
  
-socket_server.send(name.encode())
-server_name = socket_server.recv(1024)
-server_name = server_name.decode()
- 
-print(server_name,' has joined...')
+#Display available algorithms from server
+algo = socket_server.recv(1024)
+algo = algo.decode()
+print("Choose an algorithm: \n",algo)
+
+#Send chosen option to server
+choice = int(input("Enter option number: "))
+socket_server.send(choice.encode())
+
+#Input list
+size = int(input("size "))
+list=[]
+for i in range(size):
+    list.append(int(input()))
+socket_server.send(list.encode())
+
+#Loop to display steps
 while True:
-    message = (socket_server.recv(1024)).decode()
-    print(server_name, ":", message)
-    message = input("Me : ")
-    socket_server.send(message.encode()) 
+    step = (socket_server.recv(1024)).decode()
+    print(step)
