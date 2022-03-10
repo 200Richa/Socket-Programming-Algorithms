@@ -16,17 +16,15 @@ algo = algo.decode()
 print("Choose an algorithm: \n",algo)
 
 #Send chosen option to server
-choice = int(input("Enter option number: "))
+choice = input("Enter option number: ")
 socket_server.send(choice.encode())
 
 #Input list
 size = int(input("size "))
-list=[]
-for i in range(size):
-    list.append(int(input()))
+list=input()
 socket_server.send(list.encode())
 
 #Loop to display steps
-while True:
-    step = (socket_server.recv(1024)).decode()
-    print(step)
+#while True:
+    #step = (socket_server.recv(1024)).decode()
+    #print(step)
