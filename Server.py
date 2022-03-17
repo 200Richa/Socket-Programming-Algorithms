@@ -8,7 +8,7 @@ s_ip = socket.gethostbyname(host_name)
 port = 8080
 
 new_socket.bind((host_name, port))
-print("Binding successful!")
+print("Server up and running!")
 print("This is your IP: ", s_ip)
 
 new_socket.listen(1)
