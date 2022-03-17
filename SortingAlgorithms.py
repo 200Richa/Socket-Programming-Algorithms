@@ -1,4 +1,6 @@
+import timeit
 def selection_sort(A, steps):
+    # start = timeit.timeit()
     for i in range(len(A)):
         min_idx = i
         for j in range(i + 1, len(A)):
@@ -8,9 +10,12 @@ def selection_sort(A, steps):
         # print(A)
         s = listToString(A)
         steps.append(s)
+    # end = timeit.timeit()
+    # steps.append(str(end-start))
 
 
 def bubble_sort(arr, steps):
+    # start = timeit.timeit()
     n = len(arr)
     for i in range(n - 1):
         for j in range(0, n - i - 1):
@@ -18,6 +23,8 @@ def bubble_sort(arr, steps):
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
         s = listToString(arr)
         steps.append(s)
+    # end = timeit.timeit()
+    # steps.append(str(start-end))
 
 
 def listToString(s):
@@ -51,6 +58,7 @@ def heapify(arr, n, i):
 
 
 def heap_sort(arr, steps):
+    # start = timeit.timeit()
     n = len(arr)
 
     # Build a maxheap.
@@ -64,5 +72,23 @@ def heap_sort(arr, steps):
         heapify(arr, i, 0)
         s = listToString(arr)
         steps.append(s)
+    # end = timeit.timeit()
+    # steps.append(str(end-start))
 
 
+def insertion_sort(arr, steps):
+    # start = timeit.timeit()
+    for i in range(1, len(arr)):
+ 
+        key = arr[i]
+        j = i-1
+        while j >= 0 and key < arr[j] :
+                arr[j + 1] = arr[j]
+                j -= 1
+                # s = listToString(arr)
+                # steps.append(s)
+        arr[j + 1] = key
+        s = listToString(arr)
+        steps.append(s)
+    # end = timeit.timeit()
+    # steps.append(str(end-start))

@@ -21,7 +21,7 @@ print('Connection Established.\nConnected to', add[0])
 while(True):
     steps=[]
     # Send list of algorithms
-    algo = "1.Selection Sort\n 2.Bubble Sort\n 3.Heap Sort"
+    algo = "1.Selection Sort\n 2.Bubble Sort\n 3.Heap Sort\n 4.Insertion Sort"
     conn.send(algo.encode())
 
     # Receive chosen algorithm from client
@@ -38,8 +38,10 @@ while(True):
         selection_sort(list, steps)
     elif choice == 2:  # Bubble sort
         bubble_sort(list, steps)
-    else:
+    elif choice == 3:
         heap_sort(list, steps)
+    else:
+        insertion_sort(list, steps)
 
     for i in steps:
         conn.send(i.encode())
